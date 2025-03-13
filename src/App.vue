@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import AccountsForm from '@/components/AccountsForm.vue'
 </script>
 
 <template>
-  <p>Учетные записи</p>
+  <AccountsForm />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
