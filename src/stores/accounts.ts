@@ -8,7 +8,7 @@ export const useAccountsStore = defineStore('accounts', () => {
   const accounts = ref<Account[]>(JSON.parse(localStorage.getItem('accounts') || '[]'))
   const toast = useToast()
 
-  const addEmptyAccount = () => {
+  function addEmptyAccount(): void {
     accounts.value.push({
       id: crypto.randomUUID(),
       tags: [],
@@ -18,13 +18,13 @@ export const useAccountsStore = defineStore('accounts', () => {
     })
   }
 
-  const updateAccount = (params: {
+  function updateAccount(params: {
     id: string
     tags: Tag[]
     type: AccountType
     login: string
     password: string
-  }) => {
+  }): void {
     const { id, tags, type, login, password } = params
     const accountIndex = accounts.value.findIndex((account) => account.id === id)
     if (accountIndex === -1) return
@@ -38,7 +38,7 @@ export const useAccountsStore = defineStore('accounts', () => {
     toast.add({ severity: 'success', summary: 'Учетная запись сохранена', life: 3000 })
   }
 
-  const removeAccount = (id: string) => {
+  function removeAccount(id: string): void {
     const accountIndex = accounts.value.findIndex((acc) => acc.id === id)
     if (accountIndex === -1) return
 

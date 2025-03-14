@@ -4,7 +4,10 @@ import { trimTags } from '@/utils/trimTags'
 import { AccountType } from '@/const'
 import type { Account } from '@/types'
 
-export function useAccount(params: { account: Account; emit: any }) {
+export function useAccount(params: {
+  account: Account
+  emit: (event: 'update', ...args: any[]) => void
+}) {
   const { account, emit } = params
 
   const accountForm = reactive({
@@ -32,7 +35,7 @@ export function useAccount(params: { account: Account; emit: any }) {
         accountForm.password.length <= 100),
   )
 
-  function handleFieldChange(field: 'tags' | 'type' | 'login' | 'password') {
+  function handleFieldChange(field: 'tags' | 'type' | 'login' | 'password'): void {
     if (field === 'tags') {
       areTagsTouched.value = true
       accountForm.tags = trimTags(accountForm.tags)

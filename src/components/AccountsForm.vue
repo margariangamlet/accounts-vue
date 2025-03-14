@@ -6,7 +6,7 @@ import { useAccountsStore } from '@/stores/accounts'
 const { accounts, addEmptyAccount, updateAccount, removeAccount } = useAccountsStore()
 
 // Метод для удаления аккаунта использует механику делегирования событий
-function handleRemoveAccount(event: Event) {
+function handleRemoveAccount(event: Event): void {
   const element = (event.target as Element).closest('button')
   if (!element?.dataset.deleteaccountid) return
 
